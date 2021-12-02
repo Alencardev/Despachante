@@ -16,7 +16,7 @@ public class ConnectionFactory {
     static public Connection getConnection(){
         try {
             //URL para conexão com o BD
-            final String url = "jdbc:mysql://localhost:3306/mysql?zeroDateTimeBehavior=CONVERT_TO_NULL [alencar1995 on Default schema]"
+            final String url = "jdbc:mysql://localhost:3306/despach"
                     //Comandos extras para estabelecer uma conexão segura com o BD
                     //Ficou curioso? Estude sobre SSL
                     + "?verifyServerCertificate=false&useSSL=true";

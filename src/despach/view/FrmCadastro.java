@@ -4,8 +4,9 @@
  */
 package despach.view;
 
-import despach.dao.DespachDAO;
+import despach.dao.VeiculosDAO;
 import despach.model.Veiculos;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,8 +42,8 @@ public class FrmCadastro extends javax.swing.JFrame {
         BotaoLimpar = new javax.swing.JButton();
         BotaoSalvar = new javax.swing.JButton();
         BotaoExcluir = new javax.swing.JButton();
-        jFormattedTextFieldAno = new javax.swing.JFormattedTextField();
         jFormattedTextFieldPlaca = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldAno = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,25 +126,16 @@ public class FrmCadastro extends javax.swing.JFrame {
         });
 
         try {
+            jFormattedTextFieldPlaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("???-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
             jFormattedTextFieldAno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextFieldAno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldAnoActionPerformed(evt);
-            }
-        });
-
-        try {
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldPlaca.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldPlacaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout FrameInternoLayout = new javax.swing.GroupLayout(FrameInterno.getContentPane());
         FrameInterno.getContentPane().setLayout(FrameInternoLayout);
@@ -164,9 +156,9 @@ public class FrmCadastro extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(FrameInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextFieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jFormattedTextFieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(144, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameInternoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(BotaoLimpar)
@@ -176,6 +168,9 @@ public class FrmCadastro extends javax.swing.JFrame {
                 .addComponent(BotaoExcluir)
                 .addGap(6, 6, 6))
         );
+
+        FrameInternoLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jFormattedTextFieldAno, jFormattedTextFieldPlaca});
+
         FrameInternoLayout.setVerticalGroup(
             FrameInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FrameInternoLayout.createSequentialGroup()
@@ -188,22 +183,22 @@ public class FrmCadastro extends javax.swing.JFrame {
                     .addComponent(TextoModelo)
                     .addComponent(jTextFieldModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(FrameInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(FrameInternoLayout.createSequentialGroup()
-                        .addComponent(TextoPlaca)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jFormattedTextFieldPlaca, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(FrameInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TextoPlaca)
+                    .addComponent(jFormattedTextFieldPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(FrameInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextoAno)
-                    .addComponent(jFormattedTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(115, 115, 115)
+                    .addComponent(jFormattedTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(121, 121, 121)
                 .addGroup(FrameInternoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotaoLimpar)
                     .addComponent(BotaoSalvar)
                     .addComponent(BotaoExcluir))
                 .addContainerGap())
         );
+
+        FrameInternoLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jFormattedTextFieldAno, jFormattedTextFieldPlaca, jTextFieldModelo});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -231,14 +226,6 @@ public class FrmCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotaoLimparActionPerformed
 
-    private void jFormattedTextFieldAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldAnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldAnoActionPerformed
-
-    private void jFormattedTextFieldPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldPlacaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldPlacaActionPerformed
-
     private void jTextFieldModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldModeloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldModeloActionPerformed
@@ -249,21 +236,17 @@ public class FrmCadastro extends javax.swing.JFrame {
 
     private void BotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotaoSalvarActionPerformed
            try {
-               Veiculos veiculo = new Veiculos();
-            Veiculo.setplaca_veiculo(jFormattedTextFieldPlaca.getText());
-            Veiculo.setmarca_veiculo(ComboxMarcas.getSelectedItem().toString()); //POSSSO TENTAR FAZER ISSSO LAAAAAA NO EXCLUIR
-            Veiculo.setmodelo_veiculo(jTextFieldModelo.getText());
-            Veiculo.setano_veiculo(jFormattedTextFieldAno.getText());
+            Veiculos veiculo = new Veiculos();
+            veiculo.setPlaca(jFormattedTextFieldPlaca.getText());
+            veiculo.setMarca(ComboxMarcas.getSelectedItem().toString()); //POSSSO TENTAR FAZER ISSSO LAAAAAA NO EXCLUIR
+            veiculo.setModelo(jTextFieldModelo.getText());
+            veiculo.setAno(Integer.parseInt(jFormattedTextFieldAno.getText()));
 
-            DespachDAO dao = new DespachDAO();
+            VeiculosDAO dao = new VeiculosDAO();
             dao.cadastrarVeiculo(veiculo);
 
-            //Essa parte só pode executar se o usuário não deixou o campo Rua em branco
-            if (!jFormattedTextFieldPlaca.getText().isBlank()) {
-               
-                         }
-        } catch (Exception e) {
-            
+        } catch (NumberFormatException e) {
+               JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_BotaoSalvarActionPerformed
 
@@ -286,7 +269,7 @@ public class FrmCadastro extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
